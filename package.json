@@ -1,0 +1,28 @@
+{
+  "name": "bcc264-tp3-ipc-apis",
+  "version": "1.0.0",
+  "description": "TP3 BCC264 - IPC em visao ampliada com REST, GraphQL, gRPC e WebSocket.",
+  "type": "module",
+  "main": "src/services/rest/index.js",
+  "scripts": {
+    "start:domain": "node src/services/domain/index.js",
+    "start:rest": "node src/services/rest/index.js",
+    "start:graphql": "node src/services/graphql/index.js",
+    "start:grpc": "node src/services/grpc/index.js",
+    "start:websocket": "node src/services/websocket/index.js",
+    "client:grpc": "node scripts/grpc-client.js",
+    "client:ws": "node scripts/ws-client.js",
+    "test:concurrency": "node scripts/concurrency-test.js"
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "^1.10.9",
+    "@grpc/proto-loader": "^0.7.12",
+    "express": "^4.19.2",
+    "graphql": "^16.8.1",
+    "graphql-http": "^1.22.0",
+    "ws": "^8.16.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

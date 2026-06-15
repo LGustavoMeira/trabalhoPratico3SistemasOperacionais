@@ -1,0 +1,107 @@
+{
+  "info": {
+    "name": "BCC264 TP3 - REST e GraphQL",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "restUrl",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "graphqlUrl",
+      "value": "http://localhost:8082/graphql"
+    }
+  ],
+  "item": [
+    {
+      "name": "REST - Health",
+      "request": {
+        "method": "GET",
+        "url": "{{restUrl}}/health"
+      }
+    },
+    {
+      "name": "REST - List items",
+      "request": {
+        "method": "GET",
+        "url": "{{restUrl}}/items"
+      }
+    },
+    {
+      "name": "REST - Get monitor",
+      "request": {
+        "method": "GET",
+        "url": "{{restUrl}}/items/monitor"
+      }
+    },
+    {
+      "name": "REST - Purchase monitor",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "content-type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"item\":\"monitor\",\"quantity\":1,\"clientId\":\"postman-rest\"}"
+        },
+        "url": "{{restUrl}}/purchase"
+      }
+    },
+    {
+      "name": "REST - Cancel monitor",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "content-type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"item\":\"monitor\",\"quantity\":1,\"clientId\":\"postman-rest\"}"
+        },
+        "url": "{{restUrl}}/cancel"
+      }
+    },
+    {
+      "name": "GraphQL - Items",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "content-type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"query\":\"query { items { name stock } }\"}"
+        },
+        "url": "{{graphqlUrl}}"
+      }
+    },
+    {
+      "name": "GraphQL - Purchase",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "content-type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"query\":\"mutation { purchase(item: \\\"monitor\\\", quantity: 1, clientId: \\\"postman-graphql\\\") { success item remaining message } }\"}"
+        },
+        "url": "{{graphqlUrl}}"
+      }
+    }
+  ]
+}

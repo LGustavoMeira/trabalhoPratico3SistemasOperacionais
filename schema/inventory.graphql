@@ -1,0 +1,23 @@
+type Item {
+  name: String!
+  stock: Int!
+}
+
+type OperationResult {
+  success: Boolean!
+  item: String!
+  quantity: Int
+  clientId: String
+  remaining: Int!
+  message: String!
+}
+
+type Query {
+  items: [Item!]!
+  item(name: String!): Item
+}
+
+type Mutation {
+  purchase(item: String!, quantity: Int!, clientId: String!): OperationResult!
+  cancel(item: String!, quantity: Int!, clientId: String!): OperationResult!
+}

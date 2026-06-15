@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package inventory;
+
+service InventoryService {
+  rpc ListItems (Empty) returns (ItemList);
+  rpc GetItem (ItemRequest) returns (ItemReply);
+  rpc Purchase (PurchaseRequest) returns (PurchaseReply);
+  rpc Cancel (PurchaseRequest) returns (PurchaseReply);
+}
+
+message Empty {}
+
+message Item {
+  string name = 1;
+  int32 stock = 2;
+}
+
+message ItemList {
+  repeated Item items = 1;
+}
+
+message ItemRequest {
+  string item = 1;
+}
+
+message ItemReply {
+  bool found = 1;
+  Item item = 2;
+  string message = 3;
+}
+
+message PurchaseRequest {
+  string item = 1;
+  int32 quantity = 2;
+  string clientId = 3;
+}
+
+message PurchaseReply {
+  bool success = 1;
+  string item = 2;
+  int32 remaining = 3;
+  string message = 4;
+}
