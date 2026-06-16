@@ -1,0 +1,306 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [7 0 R 9 0 R 11 0 R 13 0 R 15 0 R] /Count 5 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+6 0 obj
+<< /Length 5570 >>
+stream
+BT /F2 17.00 Tf 0 0 0 rg 56.00 781.00 Td (Relatorio curto - BCC264 TP3) Tj ET
+BT /F2 12.50 Tf 0 0 0 rg 56.00 743.00 Td (1. Objetivo do trabalho) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 724.00 Td (O objetivo deste trabalho e demonstrar que a comunicacao entre processos continua sendo um) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 710.80 Td (problema central em Sistemas Operacionais, mesmo quando ela aparece em uma camada de abstracao) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 697.60 Td (mais alta que o socket TCP bruto. No TP2, a comunicacao era observada diretamente por meio de) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 684.40 Td (socket, porta, TCP, protocolo proprio e concorrencia no servidor. Neste TP3, o mesmo problema) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 671.20 Td (aparece em APIs de aplicacao: REST/JSON, GraphQL, gRPC e WebSocket.) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 656.00 Td (A aplicacao implementada representa um sistema simples de estoque. O estado inicial possui) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 642.80 Td (tres itens: cadeira com 5 unidades, mesa com 3 unidades e monitor com 2 unidades. O sistema) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 629.60 Td (permite consultar estoque, comprar/reservar itens, cancelar/devolver itens e receber) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 616.40 Td (notificacoes de mudanca de estado em tempo real.) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 601.20 Td (O ponto mais importante da implementacao e que as quatro interfaces nao representam quatro) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 588.00 Td (sistemas independentes. Todas elas acessam o mesmo nucleo de dominio e a mesma fonte de) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 574.80 Td (verdade. Assim, uma compra feita por gRPC altera o mesmo estoque que depois pode ser) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 561.60 Td (consultado por REST ou GraphQL e tambem gera evento recebido pelo canal WebSocket.) Tj ET
+BT /F2 12.50 Tf 0 0 0 rg 56.00 538.40 Td (2. Arquitetura escolhida) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 519.40 Td (A solucao usa a Arquitetura B sugerida pelo enunciado: multiplos servicos, todos) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 506.20 Td (compartilhando uma fonte de verdade central. O ambiente e composto por cinco containers:) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 491.00 Td (tp3-domain: servico central de dominio, responsavel pelo estoque compartilhado.) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 478.00 Td (tp3-rest: interface REST/JSON.) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 465.00 Td (tp3-graphql: interface GraphQL.) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 452.00 Td (tp3-grpc: interface gRPC baseada em proto/inventory.proto.) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 439.00 Td (tp3-websocket: canal WebSocket para notificacoes em tempo real.) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 424.00 Td (A comunicacao entre os servicos acontece pela rede interna criada pelo Docker Compose. O) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 410.80 Td (servico domain escuta na porta interna 7000 e e usado pelas interfaces externas como camada) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 397.60 Td (central de estado e regras de negocio. As portas publicas expostas para teste sao:) Tj ET
+BT /F3 8.80 Tf 0 0 0 rg 56.00 379.40 Td (Interface | Porta | Endereco                    ) Tj ET
+BT /F3 8.80 Tf 0 0 0 rg 56.00 367.90 Td (----------+-------+-----------------------------) Tj ET
+BT /F3 8.80 Tf 0 0 0 rg 56.00 356.40 Td (REST      | 8080  | http://localhost:8080       ) Tj ET
+BT /F3 8.80 Tf 0 0 0 rg 56.00 344.90 Td (GraphQL   | 8082  | http://localhost:8082/graphq) Tj ET
+BT /F3 8.80 Tf 0 0 0 rg 56.00 333.40 Td (gRPC      | 50051 | localhost:50051             ) Tj ET
+BT /F3 8.80 Tf 0 0 0 rg 56.00 321.90 Td (WebSocket | 8081  | ws://localhost:8081/ws      ) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 306.40 Td (A organizacao geral pode ser resumida assim:) Tj ET
+BT /F3 8.50 Tf 0 0 0 rg 56.00 288.20 Td (REST :8080 ----\\) Tj ET
+BT /F3 8.50 Tf 0 0 0 rg 56.00 277.20 Td (GraphQL :8082 --+--> domain :7000 --> eventos SSE --> WebSocket :8081/ws) Tj ET
+BT /F3 8.50 Tf 0 0 0 rg 56.00 266.20 Td (gRPC :50051 ---/) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 251.20 Td (O WebSocket nao altera o estoque diretamente. Ele assina o fluxo de eventos emitido pelo) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 238.00 Td (dominio e repassa esses eventos aos clientes conectados. Com isso, qualquer alteracao feita) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 224.80 Td (por REST, GraphQL ou gRPC pode ser observada em tempo real pelo WebSocket.) Tj ET
+BT /F2 12.50 Tf 0 0 0 rg 56.00 201.60 Td (3. Nucleo de dominio e estado compartilhado) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 182.60 Td (O estado compartilhado do sistema e um mapa em memoria mantido pelo servico domain. Esse mapa) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 169.40 Td (contem os nomes dos itens e suas quantidades atuais. Todas as operacoes de compra e) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 156.20 Td (cancelamento passam por esse servico central.) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 141.00 Td (O dominio implementa validacoes comuns para todas as interfaces:) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 125.80 Td (o campo item e obrigatorio;) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 112.80 Td (o campo quantity deve ser um inteiro positivo;) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 99.80 Td (itens inexistentes retornam erro;) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 86.80 Td (compras que excedem o estoque disponivel sao rejeitadas;) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 73.80 Td (cancelamentos/devolucoes aumentam o estoque;) Tj ET
+BT /F1 8 Tf 0 0 0 rg 279.50 32 Td (Pagina 1) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 6 0 R >>
+endobj
+8 0 obj
+<< /Length 4639 >>
+stream
+BT /F1 10.00 Tf 0 0 0 rg 62.00 785.00 Td (toda mutacao publica eventos de alteracao de estoque.) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 770.00 Td (Cada interface adiciona um campo origin ao chamar o dominio. Esse campo indica se a alteracao) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 756.80 Td (veio de rest, graphql ou grpc. O valor aparece nos eventos publicados, permitindo demonstrar) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 743.60 Td (que uma operacao feita por uma interface foi observada por outra.) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 728.40 Td (A consistencia em uma unica instancia e protegida por uma fila local de mutacoes no domain.) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 715.20 Td (Essa fila serializa compras e cancelamentos, evitando que duas requisicoes concorrentes) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 702.00 Td (modifiquem o estoque ao mesmo tempo de forma inconsistente. O objetivo e impedir, por exemplo,) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 688.80 Td (que duas compras simultaneas do ultimo monitor sejam aceitas e deixem o estoque negativo.) Tj ET
+BT /F2 12.50 Tf 0 0 0 rg 56.00 665.60 Td (4. Interfaces implementadas) Tj ET
+BT /F2 11.20 Tf 0 0 0 rg 56.00 641.60 Td (4.1 REST/JSON) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 625.60 Td (A interface REST esta exposta na porta 8080 e usa mensagens JSON. Ela implementa os endpoints) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 612.40 Td (obrigatorios:) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 597.20 Td (GET /health: verifica se o servico REST e o dominio estao ativos.) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 584.20 Td (GET /items: lista todos os itens.) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 571.20 Td (GET /items/:item: consulta um item especifico.) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 558.20 Td (POST /purchase: realiza compra ou reserva.) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 545.20 Td (POST /cancel: cancela ou devolve unidades ao estoque.) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 530.20 Td (Exemplo de compra via REST:) Tj ET
+BT /F3 8.50 Tf 0 0 0 rg 56.00 512.00 Td (curl -i -X POST http://localhost:8080/purchase \\) Tj ET
+BT /F3 8.50 Tf 0 0 0 rg 56.00 501.00 Td (  -H "content-type: application/json" \\) Tj ET
+BT /F3 8.50 Tf 0 0 0 rg 56.00 490.00 Td (  -d '{"item":"monitor","quantity":1,"clientId":"cli-rest"}') Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 475.00 Td (O REST segue um modelo orientado a recursos e endpoints HTTP. Nesse modelo, a semantica da) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 461.80 Td (operacao aparece principalmente na combinacao entre metodo HTTP, caminho da URL e payload) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 448.60 Td (JSON.) Tj ET
+BT /F2 11.20 Tf 0 0 0 rg 56.00 428.40 Td (4.2 GraphQL) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 412.40 Td (A interface GraphQL esta exposta em http://localhost:8082/graphql. Ela disponibiliza:) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 397.20 Td (query items;) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 384.20 Td (query item\(name\);) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 371.20 Td (mutation purchase;) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 358.20 Td (mutation cancel.) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 343.20 Td (Exemplo de consulta:) Tj ET
+BT /F3 8.50 Tf 0 0 0 rg 56.00 325.00 Td (query {) Tj ET
+BT /F3 8.50 Tf 0 0 0 rg 56.00 314.00 Td (  items {) Tj ET
+BT /F3 8.50 Tf 0 0 0 rg 56.00 303.00 Td (    name) Tj ET
+BT /F3 8.50 Tf 0 0 0 rg 56.00 292.00 Td (    stock) Tj ET
+BT /F3 8.50 Tf 0 0 0 rg 56.00 281.00 Td (  }) Tj ET
+BT /F3 8.50 Tf 0 0 0 rg 56.00 270.00 Td (}) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 255.00 Td (Exemplo de mutacao:) Tj ET
+BT /F3 8.50 Tf 0 0 0 rg 56.00 236.80 Td (mutation {) Tj ET
+BT /F3 8.50 Tf 0 0 0 rg 56.00 225.80 Td (  purchase\(item: "monitor", quantity: 1, clientId: "cli-graphql"\) {) Tj ET
+BT /F3 8.50 Tf 0 0 0 rg 56.00 214.80 Td (    success) Tj ET
+BT /F3 8.50 Tf 0 0 0 rg 56.00 203.80 Td (    item) Tj ET
+BT /F3 8.50 Tf 0 0 0 rg 56.00 192.80 Td (    remaining) Tj ET
+BT /F3 8.50 Tf 0 0 0 rg 56.00 181.80 Td (    message) Tj ET
+BT /F3 8.50 Tf 0 0 0 rg 56.00 170.80 Td (  }) Tj ET
+BT /F3 8.50 Tf 0 0 0 rg 56.00 159.80 Td (}) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 144.80 Td (GraphQL evidencia um modelo de API orientado a schema e consultas flexiveis. Diferentemente do) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 131.60 Td (REST, o cliente escolhe quais campos deseja receber na resposta, desde que esses campos) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 118.40 Td (existam no schema.) Tj ET
+BT /F2 11.20 Tf 0 0 0 rg 56.00 98.20 Td (4.3 gRPC) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 82.20 Td (A interface gRPC esta exposta em localhost:50051 e segue o contrato definido em) Tj ET
+BT /F1 8 Tf 0 0 0 rg 279.50 32 Td (Pagina 2) Tj ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 8 0 R >>
+endobj
+10 0 obj
+<< /Length 5494 >>
+stream
+BT /F1 10.20 Tf 0 0 0 rg 56.00 785.00 Td (proto/inventory.proto. O servico implementado e InventoryService, com quatro metodos:) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 769.80 Td (ListItems;) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 756.80 Td (GetItem;) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 743.80 Td (Purchase;) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 730.80 Td (Cancel.) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 715.80 Td (O gRPC usa uma abordagem RPC tipada e contratual. Em vez de chamar um recurso HTTP por URL, o) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 702.60 Td (cliente chama um metodo remoto definido em um contrato .proto. Esse contrato especifica nomes) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 689.40 Td (de metodos, tipos de requisicao e tipos de resposta.) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 674.20 Td (O gRPC tambem se diferencia por usar Protocol Buffers como formato de serializacao e HTTP/2) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 661.00 Td (como base de comunicacao. O uso de HTTP/2 permite multiplexar varias chamadas concorrentes) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 647.80 Td (sobre uma mesma conexao TCP, reduzindo overhead de conexoes e consumo de file descriptors em) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 634.60 Td (comparacao com o padrao tradicional REST sobre HTTP/1.1.) Tj ET
+BT /F2 11.20 Tf 0 0 0 rg 56.00 614.40 Td (4.4 WebSocket) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 598.40 Td (O WebSocket esta exposto em ws://localhost:8081/ws. Ele cria um canal persistente entre) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 585.20 Td (cliente e servidor para notificacoes em tempo real. Quando o estoque e alterado por REST,) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 572.00 Td (GraphQL ou gRPC, o dominio emite eventos e o servico WebSocket os repassa aos clientes) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 558.80 Td (conectados.) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 543.60 Td (Eventos emitidos pelo sistema incluem:) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 528.40 Td (purchase;) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 515.40 Td (cancel;) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 502.40 Td (stock_update;) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 489.40 Td (low_stock;) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 476.40 Td (out_of_stock;) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 463.40 Td (items_snapshot.) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 448.40 Td (Um exemplo de evento recebido via WebSocket e:) Tj ET
+BT /F3 8.50 Tf 0 0 0 rg 56.00 430.20 Td ({) Tj ET
+BT /F3 8.50 Tf 0 0 0 rg 56.00 419.20 Td (  "event": "stock_update",) Tj ET
+BT /F3 8.50 Tf 0 0 0 rg 56.00 408.20 Td (  "item": "monitor",) Tj ET
+BT /F3 8.50 Tf 0 0 0 rg 56.00 397.20 Td (  "stock": 1,) Tj ET
+BT /F3 8.50 Tf 0 0 0 rg 56.00 386.20 Td (  "origin": "grpc") Tj ET
+BT /F3 8.50 Tf 0 0 0 rg 56.00 375.20 Td (}) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 360.20 Td (Esse canal permite demonstrar o padrao de interacao assincromo e orientado a eventos,) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 347.00 Td (diferente do request/response tradicional usado em REST, GraphQL e chamadas unary de gRPC.) Tj ET
+BT /F2 12.50 Tf 0 0 0 rg 56.00 323.80 Td (5. Comparacao conceitual entre as tecnologias) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 304.80 Td (O TP amplia a nocao classica de IPC porque mostra que processos podem se comunicar nao apenas) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 291.60 Td (por mecanismos locais do sistema operacional, mas tambem por rede, IP, porta, transporte e) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 278.40 Td (protocolos de aplicacao. O socket continua existindo por baixo, mas a aplicacao passa a usar) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 265.20 Td (abstracoes mais ricas para organizar as mensagens.) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 250.00 Td (Socket nao e a mesma coisa que WebSocket. Socket e uma interface de programacao usada pelo) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 236.80 Td (processo para abrir um canal de comunicacao, normalmente sobre TCP ou UDP. WebSocket e um) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 223.60 Td (protocolo de aplicacao que inicia a comunicacao por HTTP e depois mantem um canal persistente) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 210.40 Td (e bidirecional.) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 195.20 Td (HTTP, REST, GraphQL, gRPC e WebSocket ficam na camada de aplicacao da pilha conceitual) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 182.00 Td (discutida no TP. TCP fica na camada de transporte, IP fica na camada de rede e o socket e a) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 168.80 Td (API usada pelo processo para acessar essa comunicacao. JSON, Protocol Buffers, schemas e) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 155.60 Td (arquivos .proto descrevem representacao de dados e contratos.) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 140.40 Td (GraphQL e gRPC nao devem ser confundidos com transporte. GraphQL e um modelo de API baseado em) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 127.20 Td (schema, queries e mutations, normalmente servido sobre HTTP. gRPC e um modelo de chamada) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 114.00 Td (remota tipada, normalmente usando HTTP/2 e Protocol Buffers. O transporte propriamente dito) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 100.80 Td (continua abaixo, provido por TCP.) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 85.60 Td (JSON e Protocol Buffers tambem cumprem papeis diferentes. JSON e textual, legivel por humanos) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 72.40 Td (e usado neste trabalho em REST e GraphQL. Protocol Buffers e binario, tipado e mais compacto,) Tj ET
+BT /F1 8 Tf 0 0 0 rg 279.50 32 Td (Pagina 3) Tj ET
+endstream
+endobj
+11 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 10 0 R >>
+endobj
+12 0 obj
+<< /Length 6064 >>
+stream
+BT /F1 10.20 Tf 0 0 0 rg 56.00 785.00 Td (usado no gRPC a partir do contrato .proto. JSON favorece simplicidade e depuracao manual;) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 771.80 Td (Protocol Buffers favorece contrato forte, eficiencia e interoperabilidade em RPC.) Tj ET
+BT /F2 12.50 Tf 0 0 0 rg 56.00 748.60 Td (6. Consistencia, concorrencia e experimento) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 729.60 Td (O experimento de concorrencia do projeto esta implementado em scripts/concurrency-test.js. O) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 716.40 Td (script prepara o item monitor com uma unidade em estoque e dispara duas compras concorrentes) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 703.20 Td (pela interface REST.) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 688.00 Td (O resultado esperado e que uma compra seja aceita e a outra rejeitada por estoque) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 674.80 Td (insuficiente. Dessa forma, o estoque final permanece em zero, e nao negativo. Esse) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 661.60 Td (comportamento demonstra que, em uma unica instancia, a fila local de mutacoes no dominio e) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 648.40 Td (suficiente para serializar as alteracoes de estado.) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 633.20 Td (Comando usado:) Tj ET
+BT /F3 8.50 Tf 0 0 0 rg 56.00 615.00 Td (docker compose exec rest node scripts/concurrency-test.js) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 600.00 Td (Em uma unica instancia, uma estrategia local como fila, mutex ou operacao atomica pode) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 586.80 Td (funcionar porque todas as mutacoes passam pelo mesmo processo e pela mesma memoria. No) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 573.60 Td (entanto, se o sistema fosse executado em multiplas instancias ou em hosts diferentes, um mutex) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 560.40 Td (local nao bastaria. Cada processo teria sua propria memoria e sua propria fila. Nesse caso,) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 547.20 Td (seria necessario mover a fonte de verdade para um banco transacional, usar operacoes atomicas) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 534.00 Td (externas, fila centralizada ou outro mecanismo de coordenacao adequado.) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 518.80 Td (O trabalho nao exige lock distribuido, consenso ou replicacao, mas e importante reconhecer o) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 505.60 Td (limite da solucao local. A implementacao atual e coerente para uma instancia unica, que e o) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 492.40 Td (escopo pratico do TP.) Tj ET
+BT /F2 12.50 Tf 0 0 0 rg 56.00 469.20 Td (7. Teste de carga, threads e assincronia) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 450.20 Td (O projeto inclui o script scripts/load-test.sh, que executa um teste simples contra GET /items) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 437.00 Td (na interface REST usando hey ou wrk, caso uma dessas ferramentas esteja instalada no host.) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 421.80 Td (Comando:) Tj ET
+BT /F3 8.50 Tf 0 0 0 rg 56.00 403.60 Td (./scripts/load-test.sh) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 388.60 Td (O servidor foi implementado em Node.js, que usa um modelo baseado em event loop para I/O de) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 375.40 Td (rede. Isso significa que ele consegue lidar com muitas conexoes sem criar uma thread por) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 362.20 Td (requisicao. Enquanto as operacoes sao principalmente I/O-bound, esse modelo reduz o custo de) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 349.00 Td (troca de contexto em comparacao com modelos que associam uma thread bloqueante a cada conexao.) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 333.80 Td (Conceitualmente, a diferenca entre thread e programacao assincrona aparece nesse ponto. Uma) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 320.60 Td (thread representa uma unidade de execucao escalonada pelo sistema operacional. A programacao) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 307.40 Td (assincrona permite que o processo inicie operacoes de I/O e continue tratando outros eventos) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 294.20 Td (enquanto aguarda respostas. No caso deste TP, as interfaces fazem chamadas de rede ao dominio) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 281.00 Td (e nao executam processamento pesado de CPU. Por isso, o modelo assincromo do Node.js e) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 267.80 Td (adequado.) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 252.60 Td (Se o servidor recebesse carga muito alta, a vazao dependeria de fatores como latencia das) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 239.40 Td (chamadas internas, custo de serializacao, numero de conexoes, limites de CPU e eventuais) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 226.20 Td (gargalos na thread principal. Se houvesse processamento intenso de CPU, a thread principal do) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 213.00 Td (Node.js poderia se tornar gargalo, exigindo workers, balanceamento ou outra estrategia.) Tj ET
+BT /F2 12.50 Tf 0 0 0 rg 56.00 189.80 Td (8. Containerizacao e Docker Hub) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 170.80 Td (O projeto foi empacotado com Dockerfile e docker-compose.yml. O Dockerfile usa a imagem base) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 157.60 Td (node:22-alpine, instala as dependencias de producao e copia codigo-fonte, contratos, scripts,) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 144.40 Td (documentacao e colecao Postman para dentro da imagem.) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 129.20 Td (O docker-compose.yml instancia os cinco servicos do projeto e expoe as portas necessarias para) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 116.00 Td (teste. A mesma imagem Docker e usada para todos os containers; o que muda entre eles e o) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 102.80 Td (comando de inicializacao. Isso evita duplicacao de imagens e mantem a entrega simples.) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 87.60 Td (A imagem publicada no Docker Hub para submissao e:) Tj ET
+BT /F3 8.50 Tf 0 0 0 rg 56.00 69.40 Td (gustavomeira1/tp3so:latest) Tj ET
+BT /F1 8 Tf 0 0 0 rg 279.50 32 Td (Pagina 4) Tj ET
+endstream
+endobj
+13 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 12 0 R >>
+endobj
+14 0 obj
+<< /Length 2118 >>
+stream
+BT /F1 10.20 Tf 0 0 0 rg 56.00 781.00 Td (Comandos minimos para reproducao pelo avaliador:) Tj ET
+BT /F3 8.50 Tf 0 0 0 rg 56.00 762.80 Td (docker pull gustavomeira1/tp3so:latest) Tj ET
+BT /F3 8.50 Tf 0 0 0 rg 56.00 751.80 Td (DOCKERHUB_IMAGE=gustavomeira1/tp3so:latest docker compose up) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 736.80 Td (Comandos usados para reconstruir e publicar uma nova versao:) Tj ET
+BT /F3 8.50 Tf 0 0 0 rg 56.00 718.60 Td (docker login) Tj ET
+BT /F3 8.50 Tf 0 0 0 rg 56.00 707.60 Td (docker build -t gustavomeira1/tp3so:latest .) Tj ET
+BT /F3 8.50 Tf 0 0 0 rg 56.00 696.60 Td (docker push gustavomeira1/tp3so:latest) Tj ET
+BT /F2 12.50 Tf 0 0 0 rg 56.00 673.60 Td (9. Demonstracao prevista) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 654.60 Td (A demonstracao em video deve seguir a sequencia:) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 639.40 Td (Subir os containers com Docker Compose.) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 626.40 Td (Mostrar o REST listando itens e realizando uma compra.) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 613.40 Td (Mostrar o GraphQL consultando itens e executando mutation.) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 600.40 Td (Mostrar o gRPC chamando ListItems, Purchase, GetItem e Cancel.) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 587.40 Td (Abrir o cliente WebSocket e observar notificacoes de estoque.) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 574.40 Td (Realizar uma alteracao por uma interface e consultar o resultado por outra.) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 561.40 Td (Executar o teste de concorrencia e explicar por que apenas uma compra deve vencer.) Tj ET
+BT /F1 10.00 Tf 0 0 0 rg 62.00 548.40 Td (Mostrar o nome da imagem publicada no Docker Hub.) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 533.40 Td (Essa demonstracao evidencia que REST, GraphQL, gRPC e WebSocket sao diferentes modelos de) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 520.20 Td (comunicacao de aplicacao sobre o mesmo problema central: processos trocando informacao de) Tj ET
+BT /F1 10.20 Tf 0 0 0 rg 56.00 507.00 Td (forma organizada, consistente e observavel.) Tj ET
+BT /F1 8 Tf 0 0 0 rg 279.50 32 Td (Pagina 5) Tj ET
+endstream
+endobj
+15 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 14 0 R >>
+endobj
+xref
+0 16
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000148 00000 n 
+0000000218 00000 n 
+0000000293 00000 n 
+0000000361 00000 n 
+0000005983 00000 n 
+0000006129 00000 n 
+0000010820 00000 n 
+0000010966 00000 n 
+0000016513 00000 n 
+0000016661 00000 n 
+0000022778 00000 n 
+0000022926 00000 n 
+0000025097 00000 n 
+trailer
+<< /Size 16 /Root 1 0 R >>
+startxref
+25245
+%%EOF

@@ -173,3 +173,4 @@ O relatorio deve correlacionar a vazao observada com o modelo de concorrencia do
 - Scripts de teste em `scripts/`.
 - Colecao Postman em `postman/bcc264-tp3.postman_collection.json`.
 - Relatorio curto em `docs/RELATORIO.md`.
+- Relatorio em PDF para submissao em `docs/RELATORIO.pdf`.
