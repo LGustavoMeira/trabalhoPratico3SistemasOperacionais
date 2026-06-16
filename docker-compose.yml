@@ -1,7 +1,7 @@
 services:
   domain:
     build: .
-    image: ${DOCKERHUB_IMAGE:-luisgustavomeiracamargos/bcc264-tp3:latest}
+    image: ${DOCKERHUB_IMAGE:-gustavomeira1/tp3so:latest}
     container_name: tp3-domain
     command: node src/services/domain/index.js
     environment:
@@ -11,7 +11,7 @@ services:
       - "7000"
 
   rest:
-    image: ${DOCKERHUB_IMAGE:-luisgustavomeiracamargos/bcc264-tp3:latest}
+    image: ${DOCKERHUB_IMAGE:-gustavomeira1/tp3so:latest}
     build: .
     container_name: tp3-rest
     command: node src/services/rest/index.js
@@ -24,7 +24,7 @@ services:
       - "8080:8080"
 
   graphql:
-    image: ${DOCKERHUB_IMAGE:-luisgustavomeiracamargos/bcc264-tp3:latest}
+    image: ${DOCKERHUB_IMAGE:-gustavomeira1/tp3so:latest}
     build: .
     container_name: tp3-graphql
     command: node src/services/graphql/index.js
@@ -37,7 +37,7 @@ services:
       - "8082:8082"
 
   grpc:
-    image: ${DOCKERHUB_IMAGE:-luisgustavomeiracamargos/bcc264-tp3:latest}
+    image: ${DOCKERHUB_IMAGE:-gustavomeira1/tp3so:latest}
     build: .
     container_name: tp3-grpc
     command: node src/services/grpc/index.js
@@ -50,7 +50,7 @@ services:
       - "50051:50051"
 
   websocket:
-    image: ${DOCKERHUB_IMAGE:-luisgustavomeiracamargos/bcc264-tp3:latest}
+    image: ${DOCKERHUB_IMAGE:-gustavomeira1/tp3so:latest}
     build: .
     container_name: tp3-websocket
     command: node src/services/websocket/index.js

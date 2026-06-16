@@ -42,6 +42,21 @@ O Node.js usa um modelo baseado em event loop para I/O de rede. Isso permite lid
 
 No gRPC, o uso de HTTP/2 permite multiplexar chamadas concorrentes sobre uma conexao TCP, reduzindo overhead de conexoes e consumo de file descriptors quando comparado ao padrao REST/HTTP 1.1 tradicional.
 
-O ambiente e empacotado com `Dockerfile` e `docker-compose.yml`. O Compose sobe cinco containers: `tp3-domain`, `tp3-rest`, `tp3-graphql`, `tp3-grpc` e `tp3-websocket`. Para publicar, definir `DOCKERHUB_IMAGE=luisgustavomeiracamargos/bcc264-tp3:latest`, executar `docker compose build` e `docker push "$DOCKERHUB_IMAGE"`.
+O ambiente e empacotado com `Dockerfile` e `docker-compose.yml`. O Compose sobe cinco containers: `tp3-domain`, `tp3-rest`, `tp3-graphql`, `tp3-grpc` e `tp3-websocket`. A imagem da submissao foi publicada no Docker Hub como `gustavomeira1/tp3so:latest`.
 
-Imagem Docker Hub da submissao: `luisgustavomeiracamargos/bcc264-tp3:latest` (ajustar se a conta real do Docker Hub for diferente).
+Comandos minimos para reproducao pelo avaliador:
+
+```sh
+docker pull gustavomeira1/tp3so:latest
+DOCKERHUB_IMAGE=gustavomeira1/tp3so:latest docker compose up
+```
+
+Para reconstruir e publicar uma nova versao da imagem:
+
+```sh
+docker login
+docker build -t gustavomeira1/tp3so:latest .
+docker push gustavomeira1/tp3so:latest
+```
+
+Imagem Docker Hub da submissao: `gustavomeira1/tp3so:latest`.

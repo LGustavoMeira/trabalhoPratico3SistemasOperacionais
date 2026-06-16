@@ -28,10 +28,23 @@ Estado inicial:
 
 ## Execucao com Docker
 
-Subir tudo:
+Imagem publicada no Docker Hub:
+
+```text
+gustavomeira1/tp3so:latest
+```
+
+Subir tudo usando a imagem publicada:
 
 ```sh
-docker compose up --build
+docker pull gustavomeira1/tp3so:latest
+DOCKERHUB_IMAGE=gustavomeira1/tp3so:latest docker compose up
+```
+
+Subir reconstruindo localmente a imagem:
+
+```sh
+DOCKERHUB_IMAGE=gustavomeira1/tp3so:latest docker compose up --build
 ```
 
 Portas publicas:
@@ -41,16 +54,15 @@ Portas publicas:
 - gRPC: `localhost:50051`
 - WebSocket: `ws://localhost:8081/ws`
 
-Imagem Docker Hub:
+Publicacao da imagem no Docker Hub:
 
 ```sh
-export DOCKERHUB_IMAGE="luisgustavomeiracamargos/bcc264-tp3:latest"
-docker compose build
-docker push "$DOCKERHUB_IMAGE"
-docker compose up
+docker login
+docker build -t gustavomeira1/tp3so:latest .
+docker push gustavomeira1/tp3so:latest
 ```
 
-Antes da submissao, ajuste `luisgustavomeiracamargos/bcc264-tp3:latest` se sua conta real do Docker Hub for diferente e registre o mesmo nome no relatorio.
+Nome exato para registrar na submissao e no relatorio: `gustavomeira1/tp3so:latest`.
 
 ## Exemplos REST
 
